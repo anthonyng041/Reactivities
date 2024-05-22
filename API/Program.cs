@@ -32,7 +32,8 @@ var services = scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<Persistence.DataContext>();
-    context.Database.Migrate();
+    await context.Database.MigrateAsync();
+    await Persistence.Seed.SeedData(context);
 }
 
 catch (Exception ex)
