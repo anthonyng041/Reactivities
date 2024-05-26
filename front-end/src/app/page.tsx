@@ -1,7 +1,7 @@
+("use client");
+
 import { Activity } from "./models/activity";
 import NavBar from "@/components/NavBar";
-
-("use client");
 
 import { useEffect, useState } from "react";
 import axios from "axios";
