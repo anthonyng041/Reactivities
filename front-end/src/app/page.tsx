@@ -1,11 +1,10 @@
-("use client");
+"use client";
 
 import { Activity } from "./models/activity";
 import NavBar from "@/components/NavBar";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Header, List } from "semantic-ui-react";
+import { Container, List } from "semantic-ui-react";
 
 export default function Home() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -19,13 +18,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <NavBar />
-      <List>
-        {activities.map((activity) => (
-          <List.Item key={activity.id}>{activity.title}</List.Item>
-        ))}
-      </List>
-    </div>
+      <Container style={{marginTop: '7em'}}>
+        <List>
+          {activities.map((activity) => (
+            <List.Item key={activity.id}>{activity.title}</List.Item>
+          ))}
+        </List>
+      </Container>
+    </>
   );
 }
