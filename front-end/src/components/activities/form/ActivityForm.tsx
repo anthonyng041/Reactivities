@@ -1,5 +1,5 @@
 import { Activity } from '@/app/models/activity';
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
 interface Props{
@@ -13,6 +13,7 @@ const ActivityForm = ({activity: selectedActivity, closeForm}: Props) => {
         id: '',
         title: '',
         description: '',
+        category: '',
         date: '',
         city: '',
         venue: ''
@@ -24,15 +25,20 @@ const ActivityForm = ({activity: selectedActivity, closeForm}: Props) => {
         console.log(activity);
     }
 
+    function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const {name, value} = event.target;
+        setActivity({...activity, [name]: value})
+    }
+
   return (
     <>
         <Form onSubmit={handleSubmit} autoComplete='off'>
-            <Form.Input placeholder='Title' value={activity.title} name='title'/>
-            <Form.TextArea placeholder='Description' />
-            <Form.Input placeholder='Category' />
-            <Form.Input placeholder='Date' />
-            <Form.Input placeholder='City' />
-            <Form.Input placeholder='Venue' />
+            <Form.Input placeholder='Title' value={activity.title} name='title' onChange={handleInputChange}/>
+            <Form.TextArea placeholder='Description' value={activity.description} name='description' onChange={handleInputChange}/>
+            <Form.Input placeholder='Category' value={activity.category} name='category' onChange={handleInputChange}/>
+            <Form.Input placeholder='Date' value={activity.date} name='date' onChange={handleInputChange}/>
+            <Form.Input placeholder='City' value={activity.city} name='city' onChange={handleInputChange}/>
+            <Form.Input placeholder='Venue' value={activity.venue} name='venue' onChange={handleInputChange}/>
             <Button floated='right' positive type='submit' content="Submit"/>
             <Button onClick={closeForm} floated='right' type='submit' content="Cancel"/>
         </Form>
