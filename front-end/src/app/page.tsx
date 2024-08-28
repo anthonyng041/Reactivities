@@ -45,6 +45,10 @@ export default function Home() {
     setEditMode(false);
     setSelectedActivity(activity);
   }
+
+  function handleDeleteActivity(id: string) {
+    setActivities([...activities.filter(x => x.id !== id)])
+  }
   return (
     <>
       <NavBar openForm={handleFormOpen}/>
@@ -58,6 +62,7 @@ export default function Home() {
           openForm={handleFormOpen}
           closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
+          deleteActivity={handleDeleteActivity}
         />
       </Container>
     </>
