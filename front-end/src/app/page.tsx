@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, List } from "semantic-ui-react";
 import ActivityDashboard from "@/components/activities/dashboard/ActivityDashboard";
+import {v4 as uuid} from 'uuid';
 
 export default function Home() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -40,7 +41,7 @@ export default function Home() {
   function handleCreateOrEditActivity(activity: Activity) {
     activity.id 
       ? setActivities([...activities.filter(x => x.id !== activity.id), activity])
-      : setActivities([...activities, activity]);;
+      : setActivities([...activities, {...activity, id: uuid()}]);;
     setEditMode(false);
     setSelectedActivity(activity);
   }
